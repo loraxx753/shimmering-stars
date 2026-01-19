@@ -11,6 +11,8 @@ import { z } from 'zod';
  */
 
 export const birthChartSchema = z.object({
+  uid: z.string()
+    .min(1, "User ID is required"),
   // Personal Information
   name: z.string()
     .min(1, "Name is required")
@@ -34,7 +36,7 @@ export const birthChartSchema = z.object({
     .default(true), // If false, we'll use noon as default
 
   // Geographic Location - Either city/country OR lat/long must be provided
-  birthLocation: z.object({
+  location: z.object({
     city: z.string()
       .max(100, "City name too long")
       .optional(),

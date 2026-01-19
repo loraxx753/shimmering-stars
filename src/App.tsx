@@ -12,22 +12,38 @@ import { NotFoundBoundary } from './components/NotFoundBoundary';
 /**
  * Router documentation https://reactrouter.com/en/main/routers/create-browser-router
  */
-const pageRoutes = Object.entries(pages).map(([_, Element]) => ({
-  ...Element,
-  element: (
-    <Layout>
-      <Element />
-    </Layout>
-  ),
-}));
+const pageRoutes = Object.entries(pages).map(([_, Element]) => {
+    if(Array.isArray(Element.path)) {
+      return Element.path.map(path => ({
+        path,
+        element: (
+          <Layout>
+            <Element />
+          </Layout>
+        ),
+      }))
+    } else {
+      return ({
+        path: Element.path,
+        element: (
+          <Layout>
+            <Element />
+          </Layout>
+        ),
+      })
+    }
+});
 
-// Add catch-all 404 route
-pageRoutes.push({
+const routes = pageRoutes.flat(Infinity)
+
+routes.push({
   path: '*',
   element: <NotFoundBoundary />,
 });
 
-const router = createBrowserRouter(pageRoutes);
+console.log(routes);
+
+const router = createBrowserRouter(routes);
 
 
 function App() {

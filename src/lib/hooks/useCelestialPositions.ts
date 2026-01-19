@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { formatOrb } from '../services/calculations';
-import { PLANETARY_POSITIONS_QUERY, HOUSES_QUERY } from '../queries/GET';
+import { PLANETARY_POSITIONS_QUERY, HOUSES_QUERY, EXISTING_CHART_QUERY } from '../queries/GET';
 import type { Reading, HouseCusps, Planet } from '../types/astrology';
 import { convertToZodiac } from '../services/calculate/astrology';
 
@@ -95,10 +95,12 @@ function getAspects(positions: Planet[]): AspectResult[] {
 }
 
 export interface ChartReadingInput {
-  date: string;
-  time: string;
-  latitude: number;
-  longitude: number;
+  uid: string;
+  name?: string;
+  date?: string;
+  time?: string;
+  latitude?: number;
+  longitude?: number;
   city?: string;
   region?: string;
   country?: string;
@@ -121,18 +123,39 @@ export default function (input?: ChartReadingInput) {
   const reading: Reading = {
     positions: [],
   };
+
+  let positions = null;
+  let positionLoading = false;
+  let positionError = null;
   
+  if(!input?.date || !input?.time || (!input?.latitude && !input?.city)) {
+    const result = useQuery(EXISTING_CHART_QUERY, {
+      variables: input as ChartReadingInput,
+      skip: !input,
+    });
+
+    console.log(result)
+    positions = result.data;
+    positionLoading = result.loading;
+    positionError = result.error;
+  } else {
+    const result = useQuery(PLANETARY_POSITIONS_QUERY, {
+      variables: input as ChartReadingInput,
+      skip: !input,
+    });
+    positions = result.data;
+    positionLoading = result.loading;
+    positionError = result.error;
+  }
   
-  const { data:positions, loading, error } = useQuery(PLANETARY_POSITIONS_QUERY, {
-    variables: input as ChartReadingInput,
-    skip: !input,
-  });
+
   const { data: houseData, loading: houseLoading, error: houseError } = useQuery(HOUSES_QUERY, {
     variables: input as Partial<ChartReadingInput>,
     skip: !input,
   });
 
-  if (positions && !loading && !error && houseData && !houseLoading && !houseError) {
+
+  if (positions && !positionLoading && !positionError && houseData && !houseLoading && !houseError) {
     // Calculate houses and angles (default to placidus, or allow system override via input if desired)
     reading.angles = {
       ascendant: houseData.housePositions.ascendant,
@@ -174,5 +197,5 @@ export default function (input?: ChartReadingInput) {
       reading.positions.push(result);
     });
   }
-  return { reading, loading, error };
+  return { reading, loading: positionLoading, error: positionError };
 }

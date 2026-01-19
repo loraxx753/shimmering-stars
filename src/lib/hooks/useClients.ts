@@ -21,9 +21,19 @@ async function getDB() {
 }
 
 export interface Client {
-  id?: number;
+  id?: string;
+  uid: string;
   name: string;
-  // Add other client fields as needed
+  birthDate: string;
+  birthTime: string;
+  location: {
+    city?: string;
+    country?: string;
+    state?: string;
+    latitude: number;
+    longitude: number;
+    timezone?: string;
+  };
 }
 
 export async function saveClient(client: Omit<Client, 'id'>): Promise<void> {

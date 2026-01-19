@@ -4,6 +4,7 @@ import { z } from 'zod';
 export const chartFormSchema = z.object({
   pageFormData: z.object({
     // Personal Information
+    uid: z.string().min(1, "URL stem is required"),
     name: z.string().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
     gender: z.enum(['male', 'female', 'other', 'prefer-not-to-say']).optional().or(z.literal('')).optional(),
 
@@ -60,6 +61,7 @@ export type ChartFormData = z.infer<typeof chartFormSchema>;
 
 export const defaultChartFormValues: Partial<ChartFormData> = {
   pageFormData: {
+    uid: '',
     name: '',
     gender: '',
     date: '',

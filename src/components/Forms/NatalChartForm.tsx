@@ -27,6 +27,7 @@ type FormValues = {
     gender?: string;
     orbPreferences?: Record<string, unknown>;
     notes?: string;
+    uid?: string;
   };
 };
 
@@ -104,6 +105,8 @@ const NatalChartForm: React.FC<NatalChartFormProps> = ({ onSubmit, isLoading = f
           </CardContent>
         </Card>
 
+        
+
         {/* Date & Time Section */}
         <Card>
           <CardHeader>
@@ -171,6 +174,34 @@ const NatalChartForm: React.FC<NatalChartFormProps> = ({ onSubmit, isLoading = f
                   This will affect the accuracy of house placements and the Ascendant/Midheaven calculations.
                 </p>
               </div>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* UID Section */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-gray-800">
+              <span className="inline-block w-5 h-5 bg-gray-200 rounded-full flex items-center justify-center text-xs font-bold">ID</span>
+              Unique Reading ID
+            </CardTitle>
+            <CardDescription>
+              This is a unique identifier for your reading. You can access your chart at <span className="font-mono text-purple-700">/charts/&lt;uid&gt;</span>
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <label htmlFor="uid" className="text-sm font-medium text-gray-700">
+              UID (Unique ID) *
+            </label>
+            <input
+              {...register('pageFormData.uid')}
+              type="text"
+              id="uid"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent font-mono"
+              placeholder="e.g. firstname-lastname"
+            />
+            {errors.pageFormData?.uid && (
+              <p className="text-sm text-red-600">{errors.pageFormData.uid.message}</p>
             )}
           </CardContent>
         </Card>

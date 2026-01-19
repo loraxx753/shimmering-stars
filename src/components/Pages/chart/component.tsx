@@ -17,22 +17,29 @@ import PlanetaryPositions from './PlanetaryPositions';
 import HousePlacements from './HousePlacements';
 import AspectPatterns from './AspectPatterns';
 import Angles from './Angles';
+import { useParams } from 'react-router-dom';
 
 
 // import NatalChart, { type NatalChartData } from './NatalChart';
 
-function parseQuery(queryString: string): Record<string, string> {
-  const params = new URLSearchParams(queryString);
+function parseQuery(queryString: string, uid?: string): Record<string, string> {
   const result: Record<string, string> = {};
-  params.forEach((value, key) => {
-    result[key] = value;
-  });
+  if(queryString) {
+    const params = new URLSearchParams(queryString);
+    params.forEach((value, key) => {
+      result[key] = value;
+    });
+  }
+  else if (uid) {
+    result.uid = uid;
+  }
   return result;
 }
 
 function queryToChartFormData(query: Record<string, string>): ChartFormData | null {
   const data: Partial<ChartFormData> = {};
   data.pageFormData = {
+    uid: query.uid,
     name: query.name,
     gender: (query.gender === "" || query.gender === "male" || query.gender === "female" || query.gender === "other" || query.gender === "prefer-not-to-say") ? query.gender : undefined,
     date: query.date,
@@ -60,11 +67,13 @@ function queryToChartFormData(query: Record<string, string>): ChartFormData | nu
 }
 
 const ChartPage: PageComponentType = () => {
+  const { uid } = useParams();
+
   const location = useLocation();
-  const query = useMemo(() => parseQuery(location.search), [location.search]);
+  const query = useMemo(() => parseQuery(location.search, uid), [location.search, uid]);
   const chartData = useMemo(() => queryToChartFormData(query), [query]);
   const hasCityRegionCountry = useMemo(() => Boolean(query.city && query.country), [query.city, query.country]);
-  
+
   const shouldFetchLatLong = query.lat === undefined && query.long === undefined && hasCityRegionCountry;
   // const { latLong, loading: latLongLoading, error: latLongError } = useLatLongFromLocation(
   const { latLong } = useLatLongFromLocation(
@@ -83,11 +92,15 @@ const ChartPage: PageComponentType = () => {
   const time = query.time || '';
   const hasCelestialInput = date && time && lat !== undefined && long !== undefined;
   const celestialInput = hasCelestialInput ? {
+    uid: query.uid || 'guest',
+    name: query.name || '',
     date,
     time,
     latitude: lat as number,
     longitude: long as number,
-  } : undefined;
+  } : { uid: query.uid || 'guest' };
+
+  console.log('Celestial Input:', celestialInput);
 
   const { reading, loading: celestialLoading, error: celestialError } = useCelestialPositions(celestialInput);
   const planetaryPositions = reading?.positions;
@@ -245,7 +258,7 @@ const ChartPage: PageComponentType = () => {
               <Card className="bg-gradient-to-br from-green-50 to-lime-50 border-green-200 shadow-md flex flex-col items-center p-6 w-64">
                 <CardHeader className="pb-0 w-full text-center">
                   <CardTitle className="text-green-800 flex flex-col items-center p-0 m-0">
-                    <object className="inline mb-2" data="venmo-logo.svg" type="image/svg+xml">
+                    <object className="inline mb-2" data="/venmo-logo.svg" type="image/svg+xml">
                       Venmo
                     </object>
                   </CardTitle>
@@ -262,7 +275,7 @@ const ChartPage: PageComponentType = () => {
               <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-200 shadow-md flex flex-col items-center p-6 w-64">
                 <CardHeader className="pb-0 w-full text-center">
                   <CardTitle className="text-blue-800 flex flex-col items-center p-0 m-0">
-                      <object className="inline mb-2" data="paypal-logo.svg" type="image/svg+xml">
+                      <object className="inline mb-2" data="/paypal-logo.svg" type="image/svg+xml">
                         PayPal
                       </object>
                   </CardTitle>
@@ -285,6 +298,6 @@ const ChartPage: PageComponentType = () => {
   );
 };
 
-ChartPage.path = '/chart';
+ChartPage.path = ['/chart', '/chart/:uid'];
 
 export default ChartPage;

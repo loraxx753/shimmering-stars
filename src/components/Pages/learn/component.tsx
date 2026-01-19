@@ -16,8 +16,8 @@ const LearnPage: PageComponentType = () => {
   // ];
   const birthDate = methods.watch('birthDate');
   const birthTime = methods.watch('birthTime');
-  const latitude = methods.watch('birthLocation.latitude');
-  const longitude = methods.watch('birthLocation.longitude');
+  const latitude = methods.watch('location.latitude');
+  const longitude = methods.watch('location.longitude');
   const hasValidCoords = typeof latitude === 'number' && typeof longitude === 'number';
 
   const { reading: celestialPositions, loading, error } = useCelestialPositions(
