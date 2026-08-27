@@ -1,0 +1,5 @@
+# Native swisseph is local-test only and fails to compile on Railway
+# (Python 3.13 has no distutils, which node-gyp still imports).
+# Vite and other build tools stay in devDependencies via --include=dev.
+[phases.install]
+cmds = ["npm install --include=dev --omit=optional"]

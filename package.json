@@ -167,7 +167,6 @@
     "sass-loader": "^16.0.1",
     "storybook": "^8.3.0",
     "style-loader": "^4.0.0",
-    "swisseph": "^0.5.17",
     "tailwindcss": "^3.4.10",
     "ts-jest": "^29.2.4",
     "ts-loader": "^9.5.1",
@@ -178,5 +177,8 @@
     "webpack": "^5.94.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.4"
+  },
+  "optionalDependencies": {
+    "swisseph": "^0.5.17"
   }
 }
