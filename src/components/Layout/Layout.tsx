@@ -24,7 +24,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     } else if (path === '/reading') {
       title = 'Birth Chart Reading | Shimmering Stars';
     } else if (path === '/') {
-      title = 'Shimmering Stars - Educational Birth Chart Analysis';
+      title = 'Shimmering Stars - Birth Chart Analysis';
     }
     
     document.title = title;
@@ -43,7 +43,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               </div>
               <div className="flex flex-col">
                 <span className="text-xl font-bold text-gray-800 leading-none">Shimmering Stars</span>
-                <span className="text-xs text-gray-600 leading-none">Educational Platform</span>
+                <span className="text-xs text-gray-600 leading-none">What's you sign?</span>
               </div>
             </a>
 
