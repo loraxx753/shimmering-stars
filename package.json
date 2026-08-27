@@ -25,6 +25,7 @@
     "build:both": "npm run build | npm run build:storybook",
     "test": "npx tsx ./test-accuracy.mjs",
     "test:houses": "npx tsx ./test-houses.mjs",
+    "test:unit": "jest --coverage=false --watchAll=false",
     "test:dev": "jest --coverage --watch"
   },
   "dependencies": {

@@ -1,8 +1,9 @@
 import { useQuery } from '@apollo/client';
 import { formatOrb } from '../services/calculations';
 import { PLANETARY_POSITIONS_QUERY, HOUSES_QUERY } from '../queries/GET';
-import type { Reading, HouseCusps, Planet } from '../types/astrology';
+import type { Reading, Planet } from '../types/astrology';
 import { convertToZodiac } from '../services/calculate/astrology';
+import { getHouseForPlanet, housesFromApi } from '../services/housePlacement';
 
 const aspectGlyphs: Record<string, string> = {
   Conjunction: '☌',
@@ -104,19 +105,6 @@ export interface ChartReadingInput {
   country?: string;
 }
 
-function getHouseForPlanet(planetLon: number, houseCusps: number[]): number {
-  for (let i = 0; i < 12; i++) {
-    const cuspStart = houseCusps[i];
-    const cuspEnd = houseCusps[(i + 1) % 12];
-    if (cuspStart < cuspEnd) {
-      if (planetLon >= cuspStart && planetLon < cuspEnd) return i + 1;
-    } else { // wrap around 360°
-      if (planetLon >= cuspStart || planetLon < cuspEnd) return i + 1;
-    }
-  }
-  return -1; // Should not happen if data is valid
-}
-
 export default function (input?: ChartReadingInput) {
   const reading: Reading = {
     positions: [],
@@ -133,21 +121,9 @@ export default function (input?: ChartReadingInput) {
   });
 
   if (positions && !loading && !error && houseData && !houseLoading && !houseError) {
-    // Calculate houses and angles (default to placidus, or allow system override via input if desired)
-    reading.angles = {
-      ascendant: houseData.housePositions.ascendant,
-      midheaven: houseData.housePositions.mc,
-      descendant: (houseData.housePositions.ascendant + 180) % 360,
-      imumCoeli: (houseData.housePositions.mc + 180) % 360,
-    };
-    reading.houses = {
-      cusps: houseData?.housePositions.house
-        .reduce((acc: HouseCusps, sign: number, index: number) => {
-          acc[index + 1] = sign;
-          return acc;
-        }, {}),
-      system: 'Placidus',
-    };
+    const { angles, houses } = housesFromApi(houseData.housePositions);
+    reading.angles = angles;
+    reading.houses = houses;
     reading.aspects = getAspects(positions.planetaryPositions);
 
     positions?.planetaryPositions.forEach((planet: Planet) => {
@@ -160,7 +136,7 @@ export default function (input?: ChartReadingInput) {
         dec: sign?.seconds || 0,
         dateStr: new Date().toISOString(),
         sign: planet.longitude,
-        house: getHouseForPlanet(planet.longitude, reading.houses?.cusps as number[]),
+        house: getHouseForPlanet(planet.longitude, houses.cusps),
       };
 
       if(planet.name == 'Moon') {

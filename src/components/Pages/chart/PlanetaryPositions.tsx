@@ -30,7 +30,7 @@ const PlanetaryPositions: React.FC<{ reading: Reading, type: string }> = ({ read
                 </CardContent>
                 <CardFooter className='p-0 justify-center text-center font-thin text-lg'>
                     <a href={`https://masteringthezodiac.com/${planet.name.toLowerCase()}-in-${ordinal(planet.house)}-house`} target="_blank" rel="noopener noreferrer">
-                        {ordinal(planet.house)} House
+                        {planet.house > 0 ? `${ordinal(planet.house)} House` : ''}
                     </a>
                 </CardFooter>
             </Card>
