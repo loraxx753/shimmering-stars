@@ -23,8 +23,8 @@
     "storybook": "cross-env mode=storybook storybook dev -p 7001",
     "build:storybook": "cross-env mode=production storybook build",
     "build:both": "npm run build | npm run build:storybook",
-    "test": "npx tsx ./test-accuracy.mjs",
-    "test:houses": "npx tsx ./test-houses.mjs",
+    "test": "jest --coverage=false --watchAll=false",
+    "test:houses": "jest --coverage=false --watchAll=false src/lib/services/housePlacement.test.ts",
     "test:unit": "jest --coverage=false --watchAll=false",
     "test:dev": "jest --coverage --watch"
   },
@@ -70,7 +70,6 @@
     "@tsparticles/react": "^3.0.0",
     "@types/d3": "^7.4.3",
     "@types/katex": "^0.16.7",
-    "@types/tz-lookup": "^6.1.2",
     "change-case": "^5.4.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -96,11 +95,9 @@
     "recharts": "^2.12.7",
     "serve": "^14.2.5",
     "sonner": "^1.5.0",
-    "swisseph-wasm": "^0.0.2",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "tsparticles": "^3.5.0",
-    "tz-lookup": "^6.1.25",
     "vaul": "^0.9.1",
     "zod": "^3.25.76"
   },
@@ -135,7 +132,6 @@
     "@typescript-eslint/eslint-plugin": "^7.15.0",
     "@typescript-eslint/parser": "^7.15.0",
     "@vitejs/plugin-react": "^4.3.1",
-    "ansi-colors": "^4.1.3",
     "autoprefixer": "^10.4.20",
     "babel-loader": "^9.1.3",
     "chromatic": "^11.7.0",
@@ -177,8 +173,5 @@
     "webpack": "^5.94.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.4"
-  },
-  "optionalDependencies": {
-    "swisseph": "^0.5.17"
   }
 }

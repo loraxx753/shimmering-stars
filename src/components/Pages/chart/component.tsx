@@ -19,8 +19,6 @@ import AspectPatterns from './AspectPatterns';
 import Angles from './Angles';
 
 
-// import NatalChart, { type NatalChartData } from './NatalChart';
-
 function parseQuery(queryString: string): Record<string, string> {
   const params = new URLSearchParams(queryString);
   const result: Record<string, string> = {};

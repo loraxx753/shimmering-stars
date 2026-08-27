@@ -10,10 +10,6 @@ export default defineConfig({
       allow: ['..']
     }
   },
-    assetsInclude: ['**/*.wasm'],
-  optimizeDeps: {
-    exclude: ['swisseph-wasm']
-  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
