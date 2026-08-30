@@ -5,7 +5,7 @@ Scope: this file applies to all work under astrology/shimmering-stars/.
 ## Repo Identity
 - Canonical role: production astrology frontend.
 - Stack: React + TypeScript + Vite + Tailwind + Storybook.
-- Parallel architecture target: `ML/viz/frontend` and `meanwhile/meanwhile`.
+- UI conventions follow [MeanwhileJS/meanwhile](https://github.com/MeanwhileJS/meanwhile). Do not assume a local Meanwhile checkout or any particular sibling folder layout.
 
 ## Fast Start
 - Install: `npm install`
@@ -17,8 +17,15 @@ Scope: this file applies to all work under astrology/shimmering-stars/.
 
 ## Architecture Notes
 - Frontend depends on GraphQL contract from `astro-server`.
-- Reuses Meanwhile-style component conventions and organization.
+- Reuses Meanwhile-style component conventions from [MeanwhileJS/meanwhile](https://github.com/MeanwhileJS/meanwhile).
 - Data docs are maintained under `data/astrology-db/docs/`.
+
+## Jira
+- Site: https://macovin.atlassian.net
+- Project: Shimmering Stars (`SS`)
+- Default issue type: Task
+- Create and update tickets in `SS` unless the user names another project.
+- Pair backend work with `astro-server` under the same `SS` project.
 
 ## Conventions That Matter
 - Keep hooks at top level and maintain existing query/hook abstractions.
