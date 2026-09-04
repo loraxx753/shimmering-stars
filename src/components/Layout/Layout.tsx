@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ThirdParty/ShadCn/Button';
-import { StarIcon, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { useAuth } from '@/lib/hooks/useAuth';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,6 +9,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
 
   // Update page title based on current path
   useEffect(() => {
@@ -23,6 +25,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       title = 'Astrological Houses | Shimmering Stars';
     } else if (path === '/reading') {
       title = 'Birth Chart Reading | Shimmering Stars';
+    } else if (path === '/signin' || path === '/signin/callback') {
+      title = 'Sign in | Shimmering Stars';
     } else if (path === '/') {
       title = 'Shimmering Stars - Birth Chart Analysis';
     }
@@ -58,6 +62,24 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <Button variant="ghost" asChild className="text-gray-700 hover:text-gray-900 hover:bg-gray-100/50">
                 <a href="/reading">Reading</a>
               </Button>
+              {user ? (
+                <>
+                  <span className="max-w-[10rem] truncate text-sm text-gray-600">
+                    {user.name || user.email}
+                  </span>
+                  <Button
+                    variant="ghost"
+                    className="text-gray-700 hover:text-gray-900 hover:bg-gray-100/50"
+                    onClick={signOut}
+                  >
+                    Sign out
+                  </Button>
+                </>
+              ) : (
+                <Button variant="ghost" asChild className="text-gray-700 hover:text-gray-900 hover:bg-gray-100/50">
+                  <a href="/signin">Sign in</a>
+                </Button>
+              )}
             </nav>
 
             {/* Mobile menu button */}
@@ -90,6 +112,22 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <Button variant="ghost" asChild className="w-full justify-start text-gray-700 hover:text-gray-900 hover:bg-gray-100/50">
                   <a href="/reading" onClick={() => setIsMobileMenuOpen(false)}>Reading</a>
                 </Button>
+                {user ? (
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start text-gray-700 hover:text-gray-900 hover:bg-gray-100/50"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      signOut();
+                    }}
+                  >
+                    Sign out
+                  </Button>
+                ) : (
+                  <Button variant="ghost" asChild className="w-full justify-start text-gray-700 hover:text-gray-900 hover:bg-gray-100/50">
+                    <a href="/signin" onClick={() => setIsMobileMenuOpen(false)}>Sign in</a>
+                  </Button>
+                )}
               </div>
             </div>
           )}

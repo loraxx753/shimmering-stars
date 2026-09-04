@@ -1,0 +1,15 @@
+# App-level SignIn config. Provider list for the SignIn kit lives here.
+# Google/GitHub client IDs and secrets belong on astro-server (see docs/oauth-setup.md).
+# Do not put secrets in this file.
+
+providers:
+  - google
+  - github
+
+google:
+  clientId: ""
+  redirectUri: "https://shimmeringstars.org/signin/callback"
+
+github:
+  clientId: ""
+  redirectUri: "https://shimmeringstars.org/signin/callback"

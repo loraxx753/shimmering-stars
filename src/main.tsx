@@ -4,11 +4,14 @@ import App from './App'
 import './index.css'
 import { ApolloProvider } from '@apollo/client';
 import { client } from '@/lib/client'
+import { AuthProvider } from '@/lib/hooks/useAuth'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </ApolloProvider>
   </React.StrictMode>,
 )

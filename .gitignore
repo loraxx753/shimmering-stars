@@ -30,3 +30,4 @@ storybook-static
 src/components/CstWip
 
 auth.json
+config/auth.local.yaml

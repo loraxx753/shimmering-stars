@@ -1,0 +1,18 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="components/SignIn" />
+
+# SignIn
+
+Lab copy on shimmering-stars. Prove OAuth here, then port the remainder back to Meanwhile.
+
+Provider names are instances: `google`, `github`, `apple`, `facebook`, `microsoft`, `email`.
+
+## App config
+
+OAuth values live on this app, not inside the component:
+
+- `config/auth.yaml` — public client IDs, redirect URIs, which providers are on
+- `config/auth.local.yaml` — client secrets (gitignored; copy from `auth.local.yaml.example`)
+
+Fill in the YAML, then pass `providers` from that file into `<SignIn />`. `onProviderSelect` is the app remainder (start OAuth with those credentials).

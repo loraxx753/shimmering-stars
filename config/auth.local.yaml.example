@@ -1,0 +1,7 @@
+# Copy to auth.local.yaml. Do not commit secrets.
+
+google:
+  clientSecret: ""
+
+github:
+  clientSecret: ""

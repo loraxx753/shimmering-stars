@@ -35,6 +35,7 @@ Scope: this file applies to all work under astrology/shimmering-stars/.
 ## Reference Docs
 - Overview: [README.md](README.md)
 - Deployment: [DEPLOYMENT.md](DEPLOYMENT.md)
+- OAuth human setup: [docs/oauth-setup.md](docs/oauth-setup.md) (console/env steps live with `astro-server`)
 - Field reference: [data/astrology-db/docs/field_reference.md](data/astrology-db/docs/field_reference.md)
 
 ## Working Rules for Agents
