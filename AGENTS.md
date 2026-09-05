@@ -37,6 +37,7 @@ Scope: this file applies to all work under astrology/shimmering-stars/.
 - Deployment: [DEPLOYMENT.md](DEPLOYMENT.md)
 - OAuth human setup: [docs/oauth-setup.md](docs/oauth-setup.md) (console/env steps live with `astro-server`)
 - Sentry (UI errors): [docs/sentry-setup.md](docs/sentry-setup.md)
+- PostHog (page views): [docs/posthog-setup.md](docs/posthog-setup.md)
 - Field reference: [data/astrology-db/docs/field_reference.md](data/astrology-db/docs/field_reference.md)
 
 ## Working Rules for Agents

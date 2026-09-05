@@ -11,6 +11,7 @@ import { useQuery } from "@apollo/client";
 
 import { clearAuthToken, getAuthToken, subscribeAuthToken } from "@/lib/auth/token";
 import { client } from "@/lib/client";
+import { identifyUser, resetAnalytics } from "@/lib/posthog";
 import { ME_QUERY } from "@/lib/queries/auth";
 
 export type AuthUser = {
@@ -39,6 +40,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => subscribeAuthToken(() => setToken(getAuthToken())), []);
 
+  const user = data?.me ?? null;
+
   useEffect(() => {
     if (!token || loading || error) {
       return;
@@ -48,7 +51,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, [token, loading, error, data]);
 
+  useEffect(() => {
+    if (user?.id) {
+      identifyUser(user.id, user.provider);
+    }
+  }, [user?.id, user?.provider]);
+
   const signOut = useCallback(() => {
+    resetAnalytics();
     clearAuthToken();
     void client.clearStore();
   }, []);
@@ -56,11 +66,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const value = useMemo<AuthContextValue>(
     () => ({
       token,
-      user: data?.me ?? null,
+      user,
       loading: Boolean(token) && loading,
       signOut,
     }),
-    [token, data?.me, loading, signOut]
+    [token, user, loading, signOut]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

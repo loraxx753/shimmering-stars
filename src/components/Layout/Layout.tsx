@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Button } from '@/components/ThirdParty/ShadCn/Button';
 import { Menu, X } from 'lucide-react';
 import { useAuth } from '@/lib/hooks/useAuth';
+import { capturePageview } from '@/lib/posthog';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -10,6 +12,11 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { user, signOut } = useAuth();
+  const location = useLocation();
+
+  useEffect(() => {
+    capturePageview(location.pathname);
+  }, [location.pathname]);
 
   // Update page title based on current path
   useEffect(() => {
