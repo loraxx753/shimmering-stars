@@ -9,6 +9,7 @@ This app only needs:
 
 ```
 VITE_GRAPHQL_API_URL=http://localhost:7004
+VITE_SENTRY_DSN=
 ```
 
 Local callback path: `/signin/callback` (Vite default port 5173).

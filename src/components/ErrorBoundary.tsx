@@ -20,6 +20,9 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    void import("@/lib/sentry").then(({ captureSentryException }) => {
+      captureSentryException(error);
+    });
     if (import.meta.env.DEV) {
       // eslint-disable-next-line no-console
       console.error('ErrorBoundary caught an error:', error, errorInfo);
