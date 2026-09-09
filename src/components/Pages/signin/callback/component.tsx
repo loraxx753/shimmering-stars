@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
 
-import { OAUTH_STATE_KEY, setAuthToken } from "@/lib/auth/token";
+import { OAUTH_STATE_KEY, consumeOAuthReturnPath, setAuthToken } from "@/lib/auth/token";
 import { EXCHANGE_OAUTH_CODE_MUTATION } from "@/lib/queries/auth";
 import { PageComponentType } from "@/lib/types";
 
@@ -45,7 +45,7 @@ const SignInCallbackPage: PageComponentType = () => {
         }
         sessionStorage.removeItem(OAUTH_STATE_KEY);
         setAuthToken(token);
-        window.location.replace("/");
+        window.location.replace(consumeOAuthReturnPath());
       } catch (error) {
         setStatus(
           error instanceof Error

@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLazyQuery } from "@apollo/client";
 
 import { SignIn, type SignInProvider, type SocialSignInProvider } from "@/components/SignIn";
 import { useAuth } from "@/lib/hooks/useAuth";
-import { OAUTH_STATE_KEY } from "@/lib/auth/token";
+import { OAUTH_STATE_KEY, setOAuthReturnPath, consumeOAuthReturnPath, OAUTH_RETURN_KEY } from "@/lib/auth/token";
 import { AUTH_URL_QUERY } from "@/lib/queries/auth";
 import { PageComponentType } from "@/lib/types";
 
@@ -14,6 +14,24 @@ const SignInPage: PageComponentType = () => {
     null
   );
   const [getAuthUrl] = useLazyQuery(AUTH_URL_QUERY);
+
+  useEffect(() => {
+    const next = new URLSearchParams(window.location.search).get("next");
+    if (next) {
+      setOAuthReturnPath(next);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!user) {
+      return;
+    }
+    const queryNext = new URLSearchParams(window.location.search).get("next");
+    const storedNext = sessionStorage.getItem(OAUTH_RETURN_KEY);
+    if (queryNext || storedNext) {
+      window.location.replace(consumeOAuthReturnPath());
+    }
+  }, [user]);
 
   const handleProviderSelect = async (provider: SocialSignInProvider) => {
     setLoadingProvider(provider);

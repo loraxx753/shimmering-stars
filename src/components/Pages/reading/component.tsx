@@ -105,8 +105,8 @@ const ReadingPage: PageComponentType = () => {
               Enter Your Birth Information
             </h2>
             <p className="text-gray-600">
-              All fields marked with * are required for accurate calculations. 
-              Your data is processed locally and not stored on our servers.
+              All fields marked with * are required for accurate calculations.
+              Sign in after you generate a reading to save it to your account; otherwise it is not stored on our servers.
             </p>
           </div>
           <NatalChartForm 

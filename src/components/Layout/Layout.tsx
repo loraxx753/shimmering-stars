@@ -32,6 +32,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       title = 'Astrological Houses | Shimmering Stars';
     } else if (path === '/reading') {
       title = 'Birth Chart Reading | Shimmering Stars';
+    } else if (path === '/readings') {
+      title = 'Saved Readings | Shimmering Stars';
     } else if (path === '/signin' || path === '/signin/callback') {
       title = 'Sign in | Shimmering Stars';
     } else if (path === '/') {
@@ -71,6 +73,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               </Button>
               {user ? (
                 <>
+                  <Button variant="ghost" asChild className="text-gray-700 hover:text-gray-900 hover:bg-gray-100/50">
+                    <a href="/readings">Readings</a>
+                  </Button>
                   <span className="max-w-[10rem] truncate text-sm text-gray-600">
                     {user.name || user.email}
                   </span>
@@ -120,16 +125,21 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   <a href="/reading" onClick={() => setIsMobileMenuOpen(false)}>Reading</a>
                 </Button>
                 {user ? (
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-start text-gray-700 hover:text-gray-900 hover:bg-gray-100/50"
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      signOut();
-                    }}
-                  >
-                    Sign out
-                  </Button>
+                  <>
+                    <Button variant="ghost" asChild className="w-full justify-start text-gray-700 hover:text-gray-900 hover:bg-gray-100/50">
+                      <a href="/readings" onClick={() => setIsMobileMenuOpen(false)}>Readings</a>
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-start text-gray-700 hover:text-gray-900 hover:bg-gray-100/50"
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        signOut();
+                      }}
+                    >
+                      Sign out
+                    </Button>
+                  </>
                 ) : (
                   <Button variant="ghost" asChild className="w-full justify-start text-gray-700 hover:text-gray-900 hover:bg-gray-100/50">
                     <a href="/signin" onClick={() => setIsMobileMenuOpen(false)}>Sign in</a>

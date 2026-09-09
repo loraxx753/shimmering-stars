@@ -10,6 +10,7 @@ import useCelestialPositions from '@/lib/hooks/useCelestialPositions';
 import { useReverseGeocode } from '@/lib/hooks/useReverseGeocode';
 import { useLatLongFromLocation } from '@/lib/hooks/useLatLongFromLocation';
 import { toDMS } from '@/lib/services/calculate/astrology';
+import type { SaveReadingInput } from '@/lib/hooks/useSavedReadings';
 
 import { DateTime } from 'luxon';
 import QRCode from './ChartQRCode';
@@ -17,6 +18,7 @@ import PlanetaryPositions from './PlanetaryPositions';
 import HousePlacements from './HousePlacements';
 import AspectPatterns from './AspectPatterns';
 import Angles from './Angles';
+import SaveReadingControls from './SaveReadingControls';
 
 
 function parseQuery(queryString: string): Record<string, string> {
@@ -112,6 +114,25 @@ const ChartPage: PageComponentType = () => {
 
   // const { name, date: birthDate, time: birthTime, location: loc, houseSystem, notes } = chartData.pageFormData;
   const { name, date: birthDate, time: birthTime } = chartData.pageFormData;
+  const saveInput: SaveReadingInput | null =
+    name && birthDate && birthTime && lat !== undefined && long !== undefined
+      ? {
+          name,
+          birthDate,
+          birthTime,
+          location: {
+            city: query.city || reverseLocation?.city || undefined,
+            country: query.country || reverseLocation?.country || undefined,
+            state: query.region || reverseLocation?.state || undefined,
+            latitude: lat,
+            longitude: long,
+            timezone: query.timezone || undefined,
+          },
+          houseSystem: query.houseSystem || undefined,
+          gender: query.gender || undefined,
+          notes: query.notes || undefined,
+        }
+      : null;
 
 
 
@@ -232,6 +253,11 @@ const ChartPage: PageComponentType = () => {
               </CardContent>
             </Card>
           </div>
+          <SaveReadingControls
+            canSave={!celestialLoading && !celestialError && Boolean(reading?.positions?.length)}
+            input={saveInput}
+            returnPath={`${location.pathname}${location.search}`}
+          />
           {/* QR Code for sharing this chart */}
           <div className='block text-center mb-8'>
             <h2 className="text-xl font-semibold text-gray-800 mb-4">Share this page</h2>
