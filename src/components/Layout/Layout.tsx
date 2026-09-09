@@ -20,7 +20,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   // Update page title based on current path
   useEffect(() => {
-    const path = window.location.pathname;
+    const path = location.pathname;
     let title = 'Shimmering Stars';
     
     if (path.startsWith('/signs/')) {
@@ -41,7 +41,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     }
     
     document.title = title;
-  }, []);
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen flex flex-col">
