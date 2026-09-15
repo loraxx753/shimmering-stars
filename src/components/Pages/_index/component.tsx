@@ -35,6 +35,9 @@ export const Content = () => <>
       <h1 className="scroll-m-20 text-4xl font-bold tracking-tight lg:text-6xl bg-gradient-to-r from-purple-600 via-blue-500 to-indigo-500 bg-clip-text text-transparent leading-tight py-2">
         Shimmering Stars ✨
       </h1>
+      <p className="mt-4 text-2xl font-semibold text-purple-700">
+        Hi James
+      </p>
     </div>
     {/* End Title */}
     <div className="mt-5 max-w-3xl text-center mx-auto">
