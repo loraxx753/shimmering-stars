@@ -38,7 +38,7 @@ export const AriesPage: PageComponentType = () => {
       {/* Hero Section */}
       <HeroSection.SimpleCentered>
         <div className="container relative py-24 lg:py-32">
-          <div className="flex flex-col items-center text-center space-y-8 bg-white/90 backdrop-blur-md rounded-2xl p-8 mx-4 sm:mx-6 lg:mx-auto max-w-4xl border border-white/20">
+          <div className="flex flex-col items-center text-center space-y-8 moon-panel p-8 mx-4 sm:mx-6 lg:mx-auto max-w-4xl">
             <div className="relative">
               <Zap className="w-24 h-24 text-red-500 animate-pulse" />
               <div className="absolute -top-2 -right-2">
@@ -51,7 +51,7 @@ export const AriesPage: PageComponentType = () => {
                 {AriesDetails.dates}
               </Badge>
               <h1 className="text-6xl font-bold bg-gradient-to-r from-red-600 via-orange-500 to-pink-500 bg-clip-text text-transparent">
-                Aries ♈
+                {'Aries ♈\uFE0E'}
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl">
                 The Ram - Ruled by Mars, Aries are pioneering leaders who charge ahead with 
@@ -232,13 +232,13 @@ export const AriesPage: PageComponentType = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="text-center space-y-4">
-          <h3 className="text-2xl font-semibold">Ready to explore your full chart?</h3>
+        <div className="moon-panel text-center space-y-4 p-8">
+          <h2 className="moon-heading text-4xl">Ready to explore your full chart?</h2>
           <p className="text-muted-foreground">
             Aries is just one piece of your astrological puzzle. Discover how all the planets and signs work together in your birth chart.
           </p>
-          <Button size="lg" className="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600">
-            Get Your Full Chart Reading
+          <Button size="lg" variant="moon" asChild>
+            <a href="/reading">Get Your Full Chart Reading</a>
           </Button>
         </div>
       </div>

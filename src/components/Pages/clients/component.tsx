@@ -36,10 +36,10 @@ const ClientsPage: PageComponentType = () => {
   if (loading) return <div className="min-h-screen flex items-center justify-center text-xl">Loading clients...</div>;
   if (error) return <div className="min-h-screen flex items-center justify-center text-xl text-red-600">Error: {error}</div>;
   return (
-    <div className="min-h-screen" style={{ width: '100vw' }}>
+    <div className="min-h-screen w-full">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6" style={{ margin: '0 auto' }}>
         {/* Header Section */}
-        <div className="bg-white/90 backdrop-blur-md rounded-lg p-4 sm:p-6 lg:p-8 mb-8">
+        <div className="moon-panel p-4 sm:p-6 lg:p-8 mb-8">
           <div className="text-center mb-8">
             <h1 className="text-4xl sm:text-5xl font-bold text-gray-800 mb-4">
               Clients

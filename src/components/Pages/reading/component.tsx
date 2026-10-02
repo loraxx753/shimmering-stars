@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { usePageBackground, pageBackgrounds } from '@/lib/hooks/usePageBackground';
 import NatalChartForm from '@/components/Forms/NatalChartForm';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ThirdParty/ShadCn/Card';
-import { StarIcon, SparklesIcon } from 'lucide-react';
+import { SparklesIcon } from 'lucide-react';
+import { MoonMark } from '@/components/Layout';
 import { PageComponentType } from '@/lib/types';
 
 const ReadingPage: PageComponentType = () => {
@@ -45,15 +46,15 @@ const ReadingPage: PageComponentType = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ width: '100vw' }}>
+    <div className="min-h-screen w-full">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6" style={{ margin: '0 auto' }}>
         {/* Header Section */}
-        <div className="bg-white/90 backdrop-blur-md rounded-lg p-4 sm:p-6 lg:p-8 mb-8">
+        <div className="moon-panel p-4 sm:p-6 lg:p-8 mb-8">
           <div className="text-center mb-8">
             <div className="flex items-center justify-center mb-4">
               <div className="relative">
-                <StarIcon className="w-16 h-16 text-purple-500 animate-pulse" />
-                <SparklesIcon className="w-8 h-8 text-indigo-500 absolute -top-1 -right-1" />
+                <MoonMark className="w-20 h-20 animate-float" />
+                <SparklesIcon aria-hidden="true" className="w-6 h-6 text-moon-pink absolute -top-1 -right-3 animate-twinkle" />
               </div>
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold text-gray-800 mb-4">
@@ -99,7 +100,7 @@ const ReadingPage: PageComponentType = () => {
           </div>
         </div>
         {/* Form Section */}
-        <div className="bg-white/90 backdrop-blur-md rounded-lg p-4 sm:p-6 lg:p-8">
+        <div className="moon-panel p-4 sm:p-6 lg:p-8">
           <div className="mb-6">
             <h2 className="text-2xl font-semibold text-gray-800 mb-2">
               Enter Your Birth Information

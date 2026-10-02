@@ -6,6 +6,7 @@ import { Badge } from "@/components/ThirdParty/ShadCn/Badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ThirdParty/ShadCn/Card";
 import { StarIcon, Flame, Mountain, Wind, Droplets } from "lucide-react";
 import { usePageBackground, pageBackgrounds } from '@/lib/hooks/usePageBackground';
+import { MoonMark } from '@/components/Layout';
 
 const zodiacSigns = [
   {
@@ -159,23 +160,22 @@ export const SignsPage: PageComponentType = () => {
   usePageBackground(pageBackgrounds.zodiac);
 
   return (
-    <div className="min-h-screen" style={{ width: '100vw' }}>
+    <div className="min-h-screen w-full">
       {/* Hero Section */}
       <HeroSection.SimpleCentered>
         <div className="container relative py-24 lg:py-32" style={{ margin: '0 auto' }}>
           <div className="flex flex-col items-center text-center space-y-8">
             <div className="relative">
-              <StarIcon className="w-24 h-24 text-purple-500 animate-pulse" />
+              <MoonMark className="w-24 h-24 animate-float" />
+              <StarIcon aria-hidden="true" className="absolute -left-4 top-0 w-5 h-5 text-moon-pink animate-twinkle" />
             </div>
             
             <div className="space-y-4">
-              <Badge variant="secondary" className="bg-purple-100 text-purple-800">
-                12 Zodiac Signs
-              </Badge>
-              <h1 className="text-6xl font-bold bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-500 bg-clip-text text-transparent">
+              <span className="moon-eyebrow">12 Zodiac Signs</span>
+              <h1 className="moon-shimmer-text text-6xl sm:text-7xl font-bold pb-2">
                 Zodiac Signs
               </h1>
-              <p className="text-xl text-muted-foreground max-w-2xl">
+              <p className="text-xl text-gray-600 max-w-2xl">
                 Discover the unique characteristics, traits, and cosmic influences of each zodiac sign. 
                 Find your sign and explore what the stars reveal about your personality.
               </p>
@@ -186,18 +186,18 @@ export const SignsPage: PageComponentType = () => {
 
       {/* Signs Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6" style={{ margin: '0 auto' }}>
-        <div className="bg-white/90 backdrop-blur-md rounded-lg p-4 sm:p-6 lg:p-8 mb-8">
+        <div className="moon-panel p-4 sm:p-6 lg:p-8 mb-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
           {zodiacSigns.map((sign) => (
             <a key={sign.name} href={sign.path} className="block">
-              <Card className="hover:shadow-lg transition-all duration-300 group cursor-pointer h-full">
+              <Card className="hover:shadow-moon hover:-translate-y-1 hover:border-primary/30 transition-all duration-300 group cursor-pointer h-full">
                 <CardHeader className="text-center">
                   <div className="flex items-center justify-center mb-4">
                     {sign.icon}
                   </div>
                   <CardTitle className={`text-2xl bg-gradient-to-r ${sign.gradient} bg-clip-text text-transparent flex items-center justify-center gap-2 group-hover:scale-105 transition-transform`}>
                     {sign.name} 
-                    <span className="text-3xl">{sign.emoji}</span>
+                    <span className="text-3xl">{`${sign.emoji}\uFE0E`}</span>
                   </CardTitle>
                   <CardDescription>
                     <Badge variant="outline" className="mb-2">
@@ -222,13 +222,13 @@ export const SignsPage: PageComponentType = () => {
 
         {/* Call to Action */}
         <div className="text-center mt-16 space-y-4">
-          <h3 className="text-2xl font-semibold">Ready for a deeper dive?</h3>
+          <h2 className="moon-heading text-4xl">Ready for a deeper dive?</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Your sun sign is just the beginning. Discover how your moon sign, rising sign, 
             and planetary placements create your unique astrological fingerprint.
           </p>
-          <Button size="lg" className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600">
-            Get Your Full Birth Chart
+          <Button size="lg" variant="moon" asChild>
+            <a href="/reading">Get Your Full Birth Chart</a>
           </Button>
         </div>
         </div>

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useLazyQuery } from "@apollo/client";
 
 import { SignIn, type SignInProvider, type SocialSignInProvider } from "@/components/SignIn";
+import { MoonMark } from "@/components/Layout";
+import { Button } from "@/components/ThirdParty/ShadCn/Button";
 import { useAuth } from "@/lib/hooks/useAuth";
 import { OAUTH_STATE_KEY, setOAuthReturnPath, consumeOAuthReturnPath, OAUTH_RETURN_KEY } from "@/lib/auth/token";
 import { AUTH_URL_QUERY } from "@/lib/queries/auth";
@@ -60,40 +62,45 @@ const SignInPage: PageComponentType = () => {
 
   if (loading) {
     return (
-      <div className="container flex min-h-[70vh] items-center justify-center py-16">
-        <p className="text-sm text-slate-500">Checking session…</p>
+      <div className="container mx-auto flex min-h-[70vh] items-center justify-center py-16">
+        <p role="status" className="moon-panel px-6 py-4 text-sm text-slate-600">Checking session…</p>
       </div>
     );
   }
 
   if (user) {
     return (
-      <div className="container flex min-h-[70vh] flex-col items-center justify-center gap-4 py-16">
-        <h1 className="text-2xl font-semibold">Signed in</h1>
-        <p className="text-sm text-slate-500">
-          {user.name || user.email || user.id}
-        </p>
-        <button
-          type="button"
-          className="text-sm text-slate-700 underline"
-          onClick={signOut}
-        >
-          Sign out
-        </button>
+      <div className="container mx-auto flex min-h-[70vh] items-center justify-center py-16">
+        <div className="moon-panel flex w-full max-w-md flex-col items-center gap-4 p-8 text-center">
+          <MoonMark className="h-14 w-14" />
+          <h1 className="moon-heading text-4xl">Signed in</h1>
+          <p className="text-sm text-slate-600">
+            {user.name || user.email || user.id}
+          </p>
+          <Button variant="outline" onClick={signOut}>
+            Sign out
+          </Button>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="container flex min-h-[70vh] flex-col items-center justify-center gap-6 py-16">
-      <SignIn
-        title="Sign in"
-        description="Use Google or GitHub. Email/password is not wired yet."
-        providers={["google", "github"]}
-        loadingProvider={loadingProvider}
-        onProviderSelect={handleProviderSelect}
-      />
-      <p className="max-w-md text-center text-sm text-slate-500">{lastAction}</p>
+    <div className="container mx-auto flex min-h-[70vh] items-center justify-center py-16">
+      <div className="moon-panel flex w-full max-w-md flex-col items-center gap-6 p-8">
+        <MoonMark className="h-14 w-14" />
+        <SignIn
+          className="w-full border-0 bg-transparent p-0 text-center shadow-none [&_h2]:text-4xl [&_h2]:font-bold"
+          title="Welcome back"
+          description="Use Google or GitHub. Email/password is not wired yet."
+          providers={["google", "github"]}
+          loadingProvider={loadingProvider}
+          onProviderSelect={handleProviderSelect}
+        />
+        <p role="status" aria-live="polite" className="max-w-md text-center text-sm text-slate-600">
+          {lastAction}
+        </p>
+      </div>
     </div>
   );
 };

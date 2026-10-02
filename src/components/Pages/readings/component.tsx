@@ -44,9 +44,9 @@ const ReadingsPage: PageComponentType = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ width: '100vw' }}>
+    <div className="min-h-screen w-full">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6" style={{ margin: '0 auto' }}>
-        <div className="bg-white/90 backdrop-blur-md rounded-lg p-4 sm:p-6 lg:p-8 mb-8">
+        <div className="moon-panel p-4 sm:p-6 lg:p-8 mb-8">
           <div className="text-center mb-8">
             <h1 className="text-4xl sm:text-5xl font-bold text-gray-800 mb-4">
               Saved Readings

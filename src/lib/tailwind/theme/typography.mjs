@@ -4,6 +4,7 @@ export default {
     },
     fontFamily: {
         sans: [
+            'Nunito',
             'ui-sans-serif',
             'system-ui',
             'sans-serif',
@@ -24,7 +25,10 @@ export default {
             'monospace',
         ],
         display: [
-            '"Bangers"'
+            '"Cormorant Garamond"',
+            'ui-serif',
+            'Georgia',
+            'serif',
         ]
     },
     fontSize: {

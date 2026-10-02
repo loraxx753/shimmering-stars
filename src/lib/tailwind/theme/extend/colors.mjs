@@ -40,6 +40,15 @@ export default () => ({
       "blur-20": "blur(20px)",
       "blur-25": "blur(25px)",
     },
+    moon: {
+      pink: 'var(--moon-pink)',
+      rose: 'var(--moon-rose)',
+      lavender: 'var(--moon-lavender)',
+      sky: 'var(--moon-sky)',
+      gold: 'var(--moon-gold)',
+      night: 'var(--moon-night)',
+      twilight: 'var(--moon-twilight)',
+    },
     'comics': {
       'caption': {
         light: '#fef896',

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Nunito:wght@400;500;600;700;800&display=swap');
 
 @import '@radix-ui/themes/styles.css';
 @import '@radix-ui/colors/gray.css';
@@ -12,185 +12,265 @@
 /* KaTeX styles for mathematical notation */
 @import 'katex/dist/katex.min.css';
 
-
-/* Force light mode across the entire application */
-* {
-  color-scheme: light !important;
-}
-
-/* Override system dark mode preferences */
-:root {
-  color-scheme: light !important;
-}
-
-/* Force light mode on html and body */
-html {
-  color-scheme: light !important;
-}
-
-/* Ensure all form inputs use light mode styling */
-input, 
-textarea, 
-select, 
-button,
-[role="textbox"],
-[role="combobox"],
-[role="listbox"] {
-  color-scheme: light !important;
-  background-color: white !important;
-  color: black !important;
-  border-color: #d1d5db !important; /* Light gray border */
-}
-
-/* Override any dark mode input styles */
-input:not([type="checkbox"]):not([type="radio"]) {
-  background-color: white !important;
-  color: #000000 !important;
-  border: 1px solid #d1d5db !important;
-}
-
-/* Ensure form fields are readable */
-.form-input,
-.form-textarea,
-.form-select {
-  background-color: white !important;
-  color: black !important;
-  border-color: #d1d5db !important;
-}
-
-/* Override Radix UI dark mode if it gets applied */
-.radix-themes {
-  color-scheme: light !important;
-}
-
-/* Force light backgrounds on cards and containers */
-.bg-card,
-.bg-popover,
-.bg-muted {
-  background-color: white !important;
-  color: black !important;
-}
-
-/* Additional form element overrides for maximum compatibility */
-input[type="text"],
-input[type="email"], 
-input[type="password"],
-input[type="number"],
-input[type="tel"],
-input[type="url"],
-input[type="search"],
-input[type="date"],
-input[type="time"],
-input[type="datetime-local"] {
-  background-color: white !important;
-  color: #000000 !important;
-  border: 1px solid #d1d5db !important;
-  -webkit-appearance: none !important;
-  appearance: none !important;
-}
-
-/* Override any Tailwind dark mode classes */
-.dark\:bg-gray-800,
-.dark\:bg-gray-900,
-.dark\:text-white,
-.dark\:text-gray-100 {
-  background-color: white !important;
-  color: black !important;
-}
-
-/* Force light mode on dropdowns and selects */
-select option {
-  background-color: white !important;
-  color: black !important;
-}
-
-/* Ensure buttons remain readable */
-button {
-  color-scheme: light !important;
-}
-
-/* Override any system dark mode on webkit */
-@media (prefers-color-scheme: dark) {
-  * {
-    color-scheme: light !important;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root  {
-  --background: 40 100% 95%; /* Light off-white */
-  --foreground: 0 0% 0%; /* Pure black */
-  --card: 60 20% 94%; /* Light grayish yellow */
-  --card-foreground: 0 0% 10%; /* Very dark gray/black */
-  --popover: 40 100% 95%; /* Light off-white */
-  --popover-foreground: 0 0% 0%; /* Pure black */
-  --primary: 220 90% 55%; /* Bright blue */
-  --primary-foreground: 0 0% 100%; /* Pure white */
-  --secondary: 0 80% 50%; /* Comic-book red */
-  --secondary-foreground: 0 0% 0%; /* Pure black */
-  --muted: 210 15% 85%; /* Light desaturated blue-gray */
-  --muted-foreground: 0 0% 10%; /* Very dark gray */
-  --accent: 55 100% 60%; /* Strong yellow */
-  --accent-foreground: 0 0% 10%; /* Dark gray */
-  --destructive: 0 100% 40%; /* Bold red */
-  --destructive-foreground: 0 0% 100%; /* Pure white */
-  --border: 0 0% 10%; /* Dark gray */
-  --input: 0 0% 18%; /* Medium gray */
-  --ring: 220 90% 55%; /* Bright blue */
-  --radius: 0.5rem;
-  --chart-1: 0 100% 50%; /* Vivid red */
-  --chart-2: 220 90% 55%; /* Bright blue */
-  --chart-3: 120 60% 40%; /* Vivid green */
-  --chart-4: 55 100% 60%; /* Strong yellow */
-  --chart-5: 30 100% 55%; /* Bright orange */
-}
-/* Dark mode disabled - force light mode always */
-.dark,
-[data-theme="dark"],
-html[data-theme="dark"],
-body[data-theme="dark"] {
-  /* Override dark mode with light mode variables */
-  --background: 40 100% 95% !important; /* Light off-white */
-  --foreground: 0 0% 0% !important; /* Pure black */
-  --card: 60 20% 94% !important; /* Light grayish yellow */
-  --card-foreground: 0 0% 10% !important; /* Very dark gray/black */
-  --popover: 40 100% 95% !important; /* Light off-white */
-  --popover-foreground: 0 0% 0% !important; /* Pure black */
-  --primary: 220 90% 55% !important; /* Bright blue */
-  --primary-foreground: 0 0% 100% !important; /* Pure white */
-  --secondary: 0 80% 50% !important; /* Comic-book red */
-  --secondary-foreground: 0 0% 0% !important; /* Pure black */
-  --muted: 210 15% 85% !important; /* Light desaturated blue-gray */
-  --muted-foreground: 0 0% 10% !important; /* Very dark gray */
-  --accent: 55 100% 60% !important; /* Strong yellow */
-  --accent-foreground: 0 0% 10% !important; /* Dark gray */
-  --destructive: 0 100% 40% !important; /* Bold red */
-  --destructive-foreground: 0 0% 100% !important; /* Pure white */
-  --border: 0 0% 10% !important; /* Dark gray */
-  --input: 0 0% 18% !important; /* Medium gray */
-  --ring: 220 90% 55% !important; /* Bright blue */
-  
-  /* Force light mode styling */
-  background-color: white !important;
-  color: black !important;
-  color-scheme: light !important;
-}
-
-/* Dynamic page background system */
+/*
+ * "Moonlight" theme: pearl surfaces floating over a twilight sky.
+ * The app is light-only; system dark mode is intentionally ignored.
+ */
 :root {
-  --page-background: transparent;
+  color-scheme: light;
+
+  --background: 270 60% 98%;
+  --foreground: 262 45% 16%;
+  --card: 0 0% 100%;
+  --card-foreground: 262 45% 16%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 262 45% 16%;
+  /* Primary pink is darkened enough for 4.5:1 against white text. */
+  --primary: 334 60% 47%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 268 85% 95%;
+  --secondary-foreground: 265 50% 30%;
+  --muted: 270 40% 96%;
+  --muted-foreground: 265 18% 40%;
+  --accent: 330 100% 96%;
+  --accent-foreground: 334 60% 35%;
+  --destructive: 350 75% 45%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 270 45% 88%;
+  --input: 270 35% 80%;
+  --ring: 334 70% 52%;
+  --radius: 1rem;
+  --chart-1: 334 80% 62%;
+  --chart-2: 205 90% 65%;
+  --chart-3: 45 92% 62%;
+  --chart-4: 258 90% 76%;
+  --chart-5: 160 55% 55%;
+
+  --moon-pink: #ff8fc4;
+  --moon-rose: #e2336b;
+  --moon-lavender: #b9a3ff;
+  --moon-sky: #8fd3ff;
+  --moon-gold: #f7c948;
+  --moon-night: #1d1645;
+  --moon-twilight: #3b2a7a;
+
+  --page-background: linear-gradient(180deg, #140f33 0%, #2a1f5c 35%, #5b3a9e 70%, #d779b5 100%);
 }
 
-/* Override Radix UI background to use our dynamic system */
+.dark,
+[data-theme="dark"] {
+  color-scheme: light;
+}
+
+.radix-themes {
+  --default-font-family: 'Nunito', ui-sans-serif, system-ui, sans-serif;
+  --heading-font-family: 'Cormorant Garamond', ui-serif, Georgia, serif;
+  color-scheme: light;
+}
+
 .radix-themes[data-has-background='true'] {
   background: var(--page-background) !important;
+  background-attachment: fixed !important;
 }
 
-/* Page background utility class */
 .dynamic-page-background {
   background: var(--page-background) !important;
   min-height: 100vh;
+}
+
+/* Form fields: Radix and browser defaults fight Tailwind here, hence !important. */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+textarea,
+select {
+  background-color: #fff !important;
+  color: hsl(var(--foreground)) !important;
+  border: 1px solid hsl(var(--input)) !important;
+  border-radius: calc(var(--radius) - 0.25rem) !important;
+  min-height: 2.75rem;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+textarea {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: hsl(var(--muted-foreground) / 0.8);
+}
+
+input:not([type="checkbox"]):not([type="radio"]):focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none !important;
+  border-color: hsl(var(--ring)) !important;
+  box-shadow: 0 0 0 3px hsl(var(--ring) / 0.25) !important;
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+  background-color: hsl(var(--muted)) !important;
+  cursor: not-allowed;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: hsl(var(--primary));
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+select option {
+  background-color: #fff;
+  color: hsl(var(--foreground));
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Nunito', ui-sans-serif, system-ui, sans-serif;
+    color: hsl(var(--foreground));
+  }
+
+  h1,
+  h2 {
+    font-family: 'Cormorant Garamond', ui-serif, Georgia, serif;
+    letter-spacing: -0.01em;
+  }
+
+  /* One consistent, high-visibility focus ring for every interactive element. */
+  :where(a, button, [role="button"], [tabindex]):focus-visible {
+    outline: 3px solid hsl(var(--ring));
+    outline-offset: 3px;
+    border-radius: 0.5rem;
+  }
+
+  ::selection {
+    background: hsl(330 100% 88%);
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer components {
+  /* Pearl glass surface used for page sections. */
+  .moon-panel {
+    @apply relative rounded-3xl border backdrop-blur-xl;
+    background: linear-gradient(180deg, rgb(255 255 255 / 0.99), rgb(253 248 255 / 0.97));
+    border-color: rgb(255 255 255 / 0.6);
+    box-shadow:
+      0 1px 0 rgb(255 255 255 / 0.8) inset,
+      0 24px 60px -24px rgb(29 22 69 / 0.55),
+      0 0 0 1px hsl(var(--border) / 0.6);
+  }
+
+  .moon-heading {
+    @apply font-display font-bold tracking-tight;
+    color: hsl(var(--foreground));
+  }
+
+  .moon-eyebrow {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-widest;
+    background: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+  }
+
+  /* Gradient text with a slow travelling highlight, static under reduced motion. */
+  .moon-shimmer-text {
+    background-image: linear-gradient(
+      100deg,
+      #c03072 0%,
+      #8b5cf6 30%,
+      #3b82f6 50%,
+      #8b5cf6 70%,
+      #c03072 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: moon-shimmer 8s linear infinite;
+  }
+
+  .moon-shimmer-text--light {
+    background-image: linear-gradient(
+      100deg,
+      #ffd1e8 0%,
+      #fff7d6 25%,
+      #ffffff 50%,
+      #d9ccff 75%,
+      #ffd1e8 100%
+    );
+  }
+
+  /* Decorative ribbon divider (the sailor bow motif, abstracted). */
+  .moon-ribbon {
+    height: 4px;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, var(--moon-pink), var(--moon-lavender), var(--moon-sky), var(--moon-gold));
+  }
+
+  /* Fixed star field layered between the sky gradient and the content. */
+  .moon-stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+      radial-gradient(1px 1px at 90px 120px, rgb(255 255 255 / 0.8), transparent),
+      radial-gradient(2px 2px at 160px 60px, #ffe8f4, transparent),
+      radial-gradient(1px 1px at 230px 190px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 300px 90px, #fff7d6, transparent),
+      radial-gradient(1px 1px at 50px 220px, rgb(255 255 255 / 0.7), transparent);
+    background-size: 340px 260px;
+    opacity: 0.55;
+    animation: moon-twinkle 6s ease-in-out infinite;
+  }
+
+  .moon-stars--offset {
+    background-position: 170px 130px;
+    background-size: 420px 320px;
+    opacity: 0.35;
+    animation-delay: -3s;
+  }
+}
+
+@keyframes moon-shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes moon-twinkle {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

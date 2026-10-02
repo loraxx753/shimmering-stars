@@ -32,7 +32,7 @@ const router = createBrowserRouter(pageRoutes);
 
 function App() {
   return (
-    <Theme className='flex justify-center' accentColor="crimson" grayColor="sand" radius="large" scaling="100%" style={{width: '100%', overflow: 'hidden'}}>
+    <Theme className='flex justify-center' accentColor="pink" grayColor="mauve" radius="large" scaling="100%" style={{width: '100%', overflowX: 'clip'}}>
       <RouterProvider router={router} />
     </Theme>
   )
