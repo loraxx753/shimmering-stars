@@ -160,7 +160,7 @@ export const SignsPage: PageComponentType = () => {
   usePageBackground(pageBackgrounds.zodiac);
 
   return (
-    <div className="min-h-screen" style={{ width: '100vw' }}>
+    <div className="min-h-screen w-full">
       {/* Hero Section */}
       <HeroSection.SimpleCentered>
         <div className="container relative py-24 lg:py-32" style={{ margin: '0 auto' }}>

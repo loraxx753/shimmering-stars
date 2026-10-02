@@ -138,7 +138,7 @@ const ChartPage: PageComponentType = () => {
 
 
   return (
-    <div className="min-h-screen" style={{ width: '100vw' }}>
+    <div className="min-h-screen w-full">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6" style={{ margin: '0 auto' }}>
         {/* Header Section */}
         <div className="moon-panel p-4 sm:p-6 lg:p-8 mb-8">

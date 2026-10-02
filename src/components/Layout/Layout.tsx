@@ -79,7 +79,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   }, [isMobileMenuOpen]);
 
   return (
-    <div className="relative min-h-screen flex flex-col" style={{ width: '100vw' }}>
+    <div className="relative min-h-screen w-full flex flex-col">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:font-bold focus:text-primary focus:shadow-moon"

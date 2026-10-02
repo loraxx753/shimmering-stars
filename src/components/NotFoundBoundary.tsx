@@ -10,7 +10,7 @@ export const NotFoundBoundary: React.FC = () => {
   const fileLink = 'src/components/Pages/index.ts';
 
   return (
-    <main className="flex min-h-screen w-screen items-center justify-center p-6">
+    <main className="flex min-h-screen w-full items-center justify-center p-6">
       <div className="moon-panel w-full max-w-lg p-8 text-center">
         <MoonMark className="mx-auto h-20 w-20 animate-float" />
         <p className="mt-4 text-sm font-bold uppercase tracking-widest text-primary">404</p>
