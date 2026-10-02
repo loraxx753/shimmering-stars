@@ -45,6 +45,20 @@ const keyframes = {
               "background-position": "0% 0%",
             },
         },  
+    },
+    moon: {
+        float: {
+            "0%, 100%": { transform: "translateY(0)" },
+            "50%": { transform: "translateY(-8px)" },
+        },
+        twinkle: {
+            "0%, 100%": { opacity: "1", transform: "scale(1) rotate(0deg)" },
+            "50%": { opacity: "0.4", transform: "scale(0.8) rotate(20deg)" },
+        },
+        "rise-in": {
+            from: { opacity: "0", transform: "translateY(12px)" },
+            to: { opacity: "1", transform: "translateY(0)" },
+        },
     }
 
 }
@@ -61,6 +75,11 @@ const animations = {
     },
     'magic-ui': {
         grid: "grid 15s linear infinite",
+    },
+    moon: {
+        float: "float 6s ease-in-out infinite",
+        twinkle: "twinkle 3s ease-in-out infinite",
+        "rise-in": "rise-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both",
     }
 }
 
@@ -68,11 +87,13 @@ export default {
     animation: {
         ...animations.shadcn,
         ...animations.animata,
-        ...animations['magic-ui']
+        ...animations['magic-ui'],
+        ...animations.moon
     },
     keyframes: {
         ...keyframes.shadcn,
         ...keyframes.animata,
-        ...keyframes['magic-ui']
+        ...keyframes['magic-ui'],
+        ...keyframes.moon
     },
 }

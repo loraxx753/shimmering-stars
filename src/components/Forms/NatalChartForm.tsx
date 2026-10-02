@@ -248,8 +248,9 @@ const NatalChartForm: React.FC<NatalChartFormProps> = ({ onSubmit, isLoading = f
               <Button
                 type="submit"
                 size="lg"
+                variant="moon"
                 disabled={!isValid || isLoading}
-                className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 min-w-[200px]"
+                className="min-w-[200px]"
               >
                 {isLoading ? (
                   <>

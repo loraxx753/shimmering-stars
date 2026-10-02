@@ -32,7 +32,7 @@ export default {
         '6xl': '72rem',
         '7xl': '80rem',
     },
-    container: {},
+    container: { center: true },
     inset: ({ theme }) => ({
         auto: 'auto',
         ...theme('spacing'),

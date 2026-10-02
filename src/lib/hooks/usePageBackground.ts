@@ -9,20 +9,20 @@ export const usePageBackground = (background: string) => {
     document.documentElement.style.setProperty('--page-background', background);
     
     return () => {
-      // Reset to transparent when component unmounts
-      document.documentElement.style.setProperty('--page-background', 'transparent');
+      // Fall back to the stylesheet's default sky when the page unmounts
+      document.documentElement.style.removeProperty('--page-background');
     };
   }, [background]);
 };
 
-// Predefined background gradients for common themes
+// Predefined backgrounds; the element variants nod to each sign's guardian palette.
 export const pageBackgrounds = {
-  astrology: 'linear-gradient(to bottom right, #312e81, #581c87, #be185d)', // Purple gradient
-  zodiac: 'linear-gradient(to bottom right, #eef2ff, #f3e8ff, #fdf2f8)', // Light gradient
-  cosmic: 'linear-gradient(to bottom right, #0f172a, #1e1b4b, #581c87)', // Dark cosmic
-  fire: 'linear-gradient(to bottom right, #dc2626, #ea580c, #f59e0b)', // Fire gradient
-  earth: 'linear-gradient(to bottom right, #059669, #16a34a, #65a30d)', // Earth gradient  
-  air: 'linear-gradient(to bottom right, #06b6d4, #0891b2, #0e7490)', // Air gradient
-  water: 'linear-gradient(to bottom right, #2563eb, #1d4ed8, #1e3a8a)', // Water gradient
+  astrology: 'linear-gradient(170deg, #1d1645 0%, #3b2a7a 40%, #8a4fb0 75%, #e98ac4 100%)', // Twilight
+  zodiac: 'linear-gradient(170deg, #fff4fb 0%, #f1e8ff 45%, #e4f2ff 100%)', // Pastel dawn
+  cosmic: 'linear-gradient(180deg, #140f33 0%, #2a1f5c 35%, #5b3a9e 70%, #d779b5 100%)', // Moonlit night
+  fire: 'linear-gradient(170deg, #2b0b24 0%, #8f1d4a 50%, #ff7a7a 100%)', // Mars red
+  earth: 'linear-gradient(170deg, #0f2a26 0%, #24745a 55%, #9fe0a6 100%)', // Jupiter green
+  air: 'linear-gradient(170deg, #11234a 0%, #2a76b8 55%, #9fe3ff 100%)', // Mercury blue
+  water: 'linear-gradient(170deg, #0b1a45 0%, #2a4bb0 55%, #8fb8ff 100%)', // Neptune sea
   default: 'transparent'
 } as const;

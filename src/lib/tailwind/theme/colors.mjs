@@ -1,9 +1,26 @@
+// Lavender-tinted neutral scale; 500 and darker meet 4.5:1 on white.
+const mauve = {
+    50: '#faf7fc',
+    100: '#f3eef7',
+    200: '#e7dfee',
+    300: '#d4c8de',
+    400: '#a898b8',
+    500: '#7e6c91',
+    600: '#5f4f72',
+    700: '#4a3c5c',
+    800: '#33284a',
+    900: '#221a36',
+    950: '#150f24',
+}
+
 export default  ({ colors }) => ({
     inherit: colors.inherit,
     current: colors.current,
     transparent: colors.transparent,
     black: colors.black,
     white: colors.white,
+    gray: mauve,
+    slate: mauve,
     zinc: colors.zinc,
     stone: colors.stone,
     red: colors.red,

@@ -19,6 +19,7 @@ import HousePlacements from './HousePlacements';
 import AspectPatterns from './AspectPatterns';
 import Angles from './Angles';
 import SaveReadingControls from './SaveReadingControls';
+import { MoonMark } from '@/components/Layout';
 
 
 function parseQuery(queryString: string): Record<string, string> {
@@ -140,11 +141,11 @@ const ChartPage: PageComponentType = () => {
     <div className="min-h-screen" style={{ width: '100vw' }}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6" style={{ margin: '0 auto' }}>
         {/* Header Section */}
-        <div className="bg-white/90 backdrop-blur-md rounded-lg p-4 sm:p-6 lg:p-8 mb-8">
+        <div className="moon-panel p-4 sm:p-6 lg:p-8 mb-8">
           <div className="text-center mb-8">
             <div className="flex items-center justify-center mb-4">
               <div className="relative">
-                <StarIcon className="w-16 h-16 text-purple-500 animate-pulse" />
+                <MoonMark className="w-20 h-20 animate-float" />
               </div>
             </div>
             <h1 className="text-5xl font-bold text-gray-900 mb-2">
