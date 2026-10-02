@@ -175,5 +175,13 @@
     "webpack": "^5.94.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.4"
+  },
+  "allowScripts": {
+    "@tsparticles/engine@3.5.0": true,
+    "core-js@3.50.0": true,
+    "core-js-pure@3.46.0": true,
+    "es5-ext@0.10.64": true,
+    "esbuild@0.21.5": true,
+    "fsevents@2.3.3": true
   }
 }
