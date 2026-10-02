@@ -9,9 +9,10 @@ import { Button } from '..';
 describe('<Button />', () => {
   describe('variant', () => {
     const variants = [
-      ['default', 'bg-primary text-primary-foreground hover:bg-primary/90'],
+      ['default', 'bg-primary text-primary-foreground shadow-moon hover:bg-primary/90 hover:-translate-y-0.5'],
+      ['moon', 'bg-gradient-to-r from-[#c03072] via-[#9b3aa3] to-[#6a4bd1] text-white shadow-moon hover:-translate-y-0.5 hover:brightness-110'],
       ['destructive', 'bg-destructive text-destructive-foreground hover:bg-destructive/90'],
-      ['outline', 'border border-input bg-background hover:bg-accent hover:text-accent-foreground'],
+      ['outline', 'border border-primary/30 bg-white/80 text-primary hover:border-primary/60 hover:bg-accent'],
       ['secondary', 'bg-secondary text-secondary-foreground hover:bg-secondary/80'],
       ['ghost', 'hover:bg-accent hover:text-accent-foreground'],
       ['link', 'text-primary underline-offset-4 hover:underline'],
@@ -33,10 +34,10 @@ describe('<Button />', () => {
 
   describe('size', () => {
     const sizes = [
-      ['default', 'h-10 px-4 py-2'],
-      ['sm', 'h-9 rounded-md px-3'],
-      ['lg', 'h-11 rounded-md px-8'],
-      ['icon', 'h-10 w-10'],
+      ['default', 'h-11 px-5'],
+      ['sm', 'h-9 px-4'],
+      ['lg', 'h-12 px-8 text-base'],
+      ['icon', 'h-11 w-11'],
     ] as const;
 
     test.each(sizes)('%s', (size, className) => {
