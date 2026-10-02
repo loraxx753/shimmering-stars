@@ -19,6 +19,7 @@ import HousePlacements from './HousePlacements';
 import AspectPatterns from './AspectPatterns';
 import Angles from './Angles';
 import SaveReadingControls from './SaveReadingControls';
+import NatalChartWheel from './NatalChartWheel';
 import { MoonMark } from '@/components/Layout';
 
 
@@ -170,6 +171,21 @@ const ChartPage: PageComponentType = () => {
               </div>
             )}
           </div>
+          <Card className="mb-8 bg-gradient-to-br from-pink-50 to-purple-50 border-pink-200">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-lg text-pink-800">Natal Chart</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {celestialLoading && <p className="text-sm text-pink-700">Drawing your chart...</p>}
+              {celestialError && <p className="text-sm text-red-600">Error loading chart.</p>}
+              {!celestialLoading && !celestialError && reading.positions.length > 0 && reading.houses && reading.angles && (
+                <NatalChartWheel reading={reading} />
+              )}
+              {!celestialLoading && !celestialError && (reading.positions.length === 0 || !reading.houses || !reading.angles) && (
+                <p className="text-sm text-pink-700">Initializing chart...</p>
+              )}
+            </CardContent>
+          </Card>
           {/* 2x2 Grid for all 4 cards */}
           <div className="grid md:grid-cols-1 gap-4 mb-8">
             {/* Planetary Positions */}
