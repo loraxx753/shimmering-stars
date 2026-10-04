@@ -95,8 +95,8 @@ npm start
 ```json
 {
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --config webpack.config.mjs",
-    "start": "http-server dist -p ${PORT:-8080}"
+    "build": "cross-env NODE_ENV=production vite build",
+    "start": "node server-start.mjs"
   },
   "engines": {
     "node": ">=20.0.0"
@@ -104,8 +104,10 @@ npm start
 }
 ```
 
-### Webpack Production Config
-The app automatically uses production settings:
+`server-start.mjs` runs `serve dist -s` on `$PORT` (default 8080).
+
+### Vite Production Config
+`vite build` (configured in `vite.config.ts`) outputs to `dist` with production settings:
 - Minified JavaScript/CSS
 - Optimized images and fonts
 - Browser routing support
@@ -126,7 +128,7 @@ The app automatically uses production settings:
 - **Cross-browser** compatibility
 
 ### ⚡ Performance
-- Fast loading with Webpack optimization
+- Fast loading with Vite's production build
 - Browser routing (no hash URLs)
 - Cached assets for repeat visits
 - Progressive loading
@@ -141,20 +143,20 @@ npm run build
 # Common issues:
 # - Missing dependencies: npm install
 # - TypeScript errors: Check console output
-# - Asset path issues: Verify webpack config
+# - Asset path issues: Verify vite.config.ts (`base`, `build.outDir`)
 ```
 
 ### Railway Deployment Issues
 1. **Build failing**: Check build logs in Railway dashboard
 2. **App not starting**: Verify `start` script in package.json
-3. **Assets not loading**: Check webpack `publicPath` configuration
+3. **Assets not loading**: Check Vite `base` in `vite.config.ts`
 4. **Port binding**: Railway automatically sets PORT env variable
 
 ### Asset Loading Problems
 If CSS/JS files don't load:
-1. Verify webpack `publicPath` is set to `'/'`
+1. Verify Vite `base` is unset or `'/'`
 2. Check that `index.html` references are correct
-3. Ensure `http-server` serves from `dist` folder
+3. Ensure `serve` (via `server-start.mjs`) serves from `dist` folder
 
 ## 🔄 Automatic Deployments
 
@@ -203,7 +205,7 @@ git push origin main
 
 ### Optimization Tips
 1. **Optimize bundle size**: Remove unused dependencies
-2. **Enable compression**: Webpack already configured
+2. **Enable compression**: `serve` compresses responses by default
 3. **Cache static assets**: Use CDN for images/fonts
 4. **Monitor usage**: Railway dashboard shows resource usage
 
