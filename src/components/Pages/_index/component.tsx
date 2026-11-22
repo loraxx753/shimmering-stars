@@ -134,6 +134,14 @@ const Features = () => (
         <p className="mt-1 text-sm text-gray-600">Sign in to keep charts for you and your friends.</p>
       </a>
 
+      <a href="/sessions" className={tileClass}>
+        <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
+          <Sparkles aria-hidden="true" className="h-5 w-5" />
+        </span>
+        <h3 className="moon-heading mt-4 text-2xl">Sessions with Simran</h3>
+        <p className="mt-1 text-sm text-gray-600">Live readings and astrology counseling — book a time.</p>
+      </a>
+
       <div className="moon-panel flex flex-col p-6 md:col-span-2">
         <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-amber-100 text-amber-800">
           <QrCode aria-hidden="true" className="h-5 w-5" />

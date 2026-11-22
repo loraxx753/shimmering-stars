@@ -6,5 +6,6 @@ export { default as Clients } from './clients'
 export { default as LearnPage } from './learn'
 export { default as ChartPage } from './chart';
 export { default as ReadingsPage } from './readings';
+export { default as SessionsPage } from './sessions';
 export { default as SignInPage } from './signin';
 export { default as SignInCallbackPage } from './signin/callback';

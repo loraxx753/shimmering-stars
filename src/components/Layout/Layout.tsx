@@ -20,6 +20,7 @@ const publicNav: NavItem[] = [
   { href: '/signs', label: 'Signs' },
   { href: '/houses', label: 'Houses' },
   { href: '/reading', label: 'Reading' },
+  { href: '/sessions', label: 'Sessions' },
 ];
 
 const isActivePath = (pathname: string, href: string) =>
@@ -60,6 +61,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       title = 'Birth Chart Reading | Shimmering Stars';
     } else if (path === '/readings') {
       title = 'Saved Readings | Shimmering Stars';
+    } else if (path === '/sessions') {
+      title = 'Sessions | Shimmering Stars';
     } else if (path === '/signin' || path === '/signin/callback') {
       title = 'Sign in | Shimmering Stars';
     } else if (path === '/') {
@@ -212,6 +215,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <a className="hover:text-primary" href="/signs">Signs</a>
             <a className="hover:text-primary" href="/houses">Houses</a>
             <a className="hover:text-primary" href="/reading">Get your chart</a>
+            <a className="hover:text-primary" href="/sessions">Sessions</a>
           </nav>
         </div>
       </footer>
