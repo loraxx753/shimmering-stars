@@ -23,17 +23,6 @@ export type SessionOffering = {
  */
 export const sessionOfferings: SessionOffering[] = [
   {
-    id: 'recorded',
-    name: 'Birth chart reading (recorded)',
-    price: '$80',
-    duration: 'Unlisted YouTube walkthrough',
-    summary:
-      'Simran records herself going over your chart and shares a private link you can rewatch. No live call.',
-    bookingUrl: undefined,
-    intake: ['Birth date', 'Birth time', 'Birth place (city / region)'],
-    ctaLabel: 'Request recorded reading',
-  },
-  {
     id: 'live-reading',
     name: 'Birth chart reading (live)',
     price: '$100',
@@ -84,5 +73,16 @@ export const sessionOfferings: SessionOffering[] = [
     bookingUrl: 'https://calendly.com/simran-psy/short-check-in',
     intake: ['Birth date', 'Birth time', 'The one topic you want to cover'],
     ctaLabel: 'Schedule check-in',
+  },
+  {
+    id: 'recorded',
+    name: 'Birth chart reading (recorded)',
+    price: '$80',
+    duration: 'Unlisted YouTube walkthrough',
+    summary:
+      'Simran records herself going over your chart and shares a private link you can rewatch. No live call.',
+    bookingUrl: undefined,
+    intake: ['Birth date', 'Birth time', 'Birth place (city / region)'],
+    ctaLabel: 'Request recorded reading',
   },
 ];
