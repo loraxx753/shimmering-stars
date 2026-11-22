@@ -17,14 +17,9 @@ export type SessionOffering = {
   ctaLabel: string;
 };
 
-const env = (key: string) => {
-  const value = import.meta.env[key];
-  return typeof value === 'string' && value.trim() ? value.trim() : undefined;
-};
-
 /**
  * Paid session menu for /sessions.
- * Booking URLs come from env so Calendly / Tally links can be plugged in without code changes.
+ * Booking URLs are public Calendly (or form) links — ship them in code, not env.
  */
 export const sessionOfferings: SessionOffering[] = [
   {
@@ -34,7 +29,7 @@ export const sessionOfferings: SessionOffering[] = [
     duration: 'Unlisted YouTube walkthrough',
     summary:
       'Simran records herself going over your chart and shares a private link you can rewatch. No live call.',
-    bookingUrl: env('VITE_BOOKING_RECORDED_URL'),
+    bookingUrl: undefined,
     intake: ['Birth date', 'Birth time', 'Birth place (city / region)'],
     ctaLabel: 'Request recorded reading',
   },
@@ -45,7 +40,7 @@ export const sessionOfferings: SessionOffering[] = [
     duration: '60 min live',
     summary:
       'A live walkthrough of your natal chart — placements and themes, with room for questions. No recording delivered.',
-    bookingUrl: env('VITE_BOOKING_LIVE_READING_URL'),
+    bookingUrl: 'https://calendly.com/simran-psy/birth-chart-reading',
     intake: ['Birth date', 'Birth time', 'Birth place (city / region)'],
     ctaLabel: 'Schedule live reading',
   },
@@ -56,7 +51,7 @@ export const sessionOfferings: SessionOffering[] = [
     duration: '75 min',
     summary:
       'A counseling-style conversation that uses your chart to work through what is on your mind — not a one-way lecture, and not therapy.',
-    bookingUrl: env('VITE_BOOKING_COUNSELING_URL'),
+    bookingUrl: 'https://calendly.com/simran-psy/astrology-counseling',
     intake: [
       'Birth date',
       'Birth time',
@@ -72,7 +67,7 @@ export const sessionOfferings: SessionOffering[] = [
     duration: '60 min',
     summary:
       'For clients who already had a first counseling meeting. Dig into what is current with your chart already known.',
-    bookingUrl: env('VITE_BOOKING_FOLLOWUP_URL'),
+    bookingUrl: 'https://calendly.com/simran-psy/follow-up-returning-client',
     intake: [
       'Birth date',
       'Birth time',
@@ -86,7 +81,7 @@ export const sessionOfferings: SessionOffering[] = [
     price: '$60',
     duration: '30 min',
     summary: 'One topic, quick. Best when you already know your chart basics.',
-    bookingUrl: env('VITE_BOOKING_CHECKIN_URL'),
+    bookingUrl: 'https://calendly.com/simran-psy/short-check-in',
     intake: ['Birth date', 'Birth time', 'The one topic you want to cover'],
     ctaLabel: 'Schedule check-in',
   },
